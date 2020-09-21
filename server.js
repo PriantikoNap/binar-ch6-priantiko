@@ -14,7 +14,7 @@ app.use(express.json());
 
 app.get('/',db.viewLoginUser)
 app.post('/',db.loginUser)
-
+app.get('/home',db.home)
 
 //user game routing
 app.get('/usergames/create', db.viewUserGame)

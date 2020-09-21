@@ -5,8 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <%- include('../head.ejs') %>
+        <link rel="stylesheet" href="../style.css">
 </head>
 <body>
-    <form action="/" method="post"></form>
+        <div class="container">
+                <div class="row">
+                <div class="col-md-6 col-sm 12">
+                        <div class="col-md-6 col-sm-12">
+                                <img class="my-5"src="/binar-logo.png" alt="">
+                            </div>
+        
+                </div>
+                <div class="col-md-6 col-sm-12" style="margin-top: 20vh;">
+                        <h1 class="color-white">Silahkan Mengisi Biodata Anda :</h1>
+                        <form method="POST" action="/adduserbiodata" >
+                            <div class="form-group">
+                                    <label class="color-white" for="nama">Nama</label>
+                                    <input type="text" class="form-control" name="nama" id="nama">
+                                  </div>
+            
+                                  <div class="form-group">
+                                        <label class="color-white" for="alamat">Alamat</label>
+                                        <input type="text" class="form-control" name="alamat" id="alamat">
+                                      </div>
+                                      <div class="form-group">
+                                            <label class="color-white" for="email">Email</label>
+                                            <input type="email" class="form-control" name="email" id="email">
+                                          </div>
+                                          <div class="form-group">
+                                                <label class="color-white" for="wallet">Wallet</label>
+                                                <input type="text" class="form-control" name="wallet" id="wallet">
+                                              </div>
+                                              <div class="form-group">
+                                                    <label class="color-white" for="country">Country</label>
+                                                    <input type="text" class="form-control" name="country" id="country">
+                                                  </div>
+                            <button type="submit" class="btn btn-primary">Create Account</button>
+                        </form>
+                </div>
+            </div>
+            </div>
 </body>
 </html>

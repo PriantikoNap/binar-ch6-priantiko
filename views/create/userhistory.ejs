@@ -1,0 +1,34 @@
+<html lang="en">
+<head>
+        <%- include('../head.ejs') %>
+        <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+        <div class="col-md-6 col-sm 12">
+                <div class="col-md-6 col-sm-12">
+                        <img class="my-5"src="/binar-logo.png" alt="">
+                    </div>
+
+        </div>
+        <div class="col-md-6 col-sm-12" style="margin-top: 20vh;">
+            <h1 class="color-white">Silahkan Mengisi User History Anda :</h1>
+                <form method="POST" action="/adduserhistory" >
+                    <div class="form-group">
+                            <label class="color-white" for="played">Lama Bermain (/JAM)</label>
+                            <input type="numeric" class="form-control" name="played" id="played">
+                          </div>
+    
+                          <div class="form-group">
+                                <label class="color-white" for="lvl">Level</label>
+                                <input type="numeric" class="form-control" name="lvl" id="lvl">
+                              </div>
+                    <button type="submit" class="btn btn-primary">Create Account</button>
+                </form>
+        </div>
+    </div>
+    </div>
+    
+</body>
+</html>

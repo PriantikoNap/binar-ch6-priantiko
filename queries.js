@@ -12,6 +12,9 @@ const pool = new Pool({
 viewUserGame =(req,res)=>{
     res.render('create/usergame')
 }
+home =(req,res)=>{
+    res.render('home')
+}
 viewUserGameBiodata =(req,res)=>{
     res.render('create/userbiodata')
 }
@@ -42,7 +45,7 @@ getUserGames = async(req,res)=>{
     const id= req.params.id;
     try {
         const response = await pool.query('SELECT * FROM user_game WHERE id=$1',[id])
-        res.json(response)
+        res.render('show/usergame',{data: response});
     } catch (err) {
         console.error(err.message);   
     }
@@ -51,7 +54,7 @@ addUserGame = async(req,res) =>{
     const {username, pass} = req.body;
     try {
         const response = await pool.query('INSERT INTO user_game (username, pass) VALUES($1, $2) RETURNING *',[username, pass])
-        res.json(response);
+        res.render('success');
     } catch (err) {
         console.error(err.message);
     }
@@ -61,7 +64,7 @@ updateUserGame = async(req,res) => {
     const {username, pass} = req.body;
     try {
         const response = await pool.query('UPDATE user_game SET name = $1, email = $2 WHERE id = $3 RETURNING *',[username, pass,id])
-        res.json(response)
+        res.render('success');
     } catch (err) {
         console.error(err.message);
     }
@@ -71,7 +74,7 @@ deleteUserGame = async(req, res) =>{
     const id = req.params.id;
     try {
         const response = await pool.query('DELETE FROM user_game WHERE id= $1 RETURNING',[id])
-        res.json(response);
+        res.render('success');
     } catch (err) {
         console.error(err.message);
     }
@@ -81,7 +84,7 @@ deleteUserGame = async(req, res) =>{
 getAllBiodata = async(req,res)=>{
     try {
         const response = await pool.query('SELECT * from user_game_biodata');
-        res.json(response)
+        res.render('show/userbiodatashow',{data: response});
     } catch (err) {
         console.error(err.message);
     }
@@ -90,7 +93,7 @@ getUserBiodata = async(req,res) =>{
     const id = req.params.id;
     try {
         const response = await pool.query('SELECT * FROM user_game_biodata WHERE id=$1',[id])
-        res.json(response)
+        res.render('show/userbiodatashow',{data: response});
     } catch (err) {
         console.error(err.message);
     }
@@ -99,8 +102,9 @@ getUserBiodata = async(req,res) =>{
 addGameBiodata = async(req,res)=>{
     const {nama, alamat, email, wallet, country} = req.body;
     try {
-        const response = await pool.query('INSERT INTO user_game_biodata (nama, alamat, email, wallet, country) VALUES($1, $2, $3, $4, $5) RETURNING *',[nama, alamat,email, wallet,country])
-        res.json(response)
+        const response = await pool.query('INSERT INTO user_game_biodata (nama, alamat, email, wallet, country) VALUES($1, $2, $3, $4, $5) RETURNING *',[nama, alamat,email, parseInt(wallet),country])
+        res.render('success');
+       
     } catch (err) {
      console.error(err.message);
     }
@@ -110,8 +114,8 @@ updateGameBiodata = async(req, res) =>{
     const {nama, alamat, email, wallet, country} = req.body;
     
     try {
-        const response = await pool.query('UPDATE user_game_biodata SET nama = $1, alamat = $2, email = $3, wallet = $4, country=$5 WHERE id =$6 RETURNING *',[nama, alamat,email, wallet,country, id])
-        res.json(response)
+        const response = await pool.query('UPDATE user_game_biodata SET nama = $1, alamat = $2, email = $3, wallet = $4, country = $5 WHERE id =$6 RETURNING *',[nama, alamat,email, wallet,country, id])
+        res.render('success');
     } catch (err) {
         console.error(err.message);  
     }
@@ -121,7 +125,7 @@ deleteGameBiodata = async(req, res) => {
     const id = req.params.id;
     try {
         const response = await pool.query('DELETE FROM user_game_biodata WHERE id = $1',[id])
-        res.json(response)
+        res.render('success');
     } catch (err) {
         console.error(err.message);
         
@@ -132,7 +136,7 @@ deleteGameBiodata = async(req, res) => {
 getAllHistory = async(req,res) =>{
     try {
         const response = await pool.query('SELECT * FROM user_game_history');
-        res.json(response)
+        res.render('show/userhistoryshow',{data: response});
     } catch (err) {
         console.error(err.message);
     }
@@ -142,7 +146,7 @@ getUserHistory = async(req,res)=>{
     const id = req.params.id;
     try {
         const response = await pool.query('SELECT * FROM user_game_history WHERE id = $1',[id])
-        res.json(response)
+        res.render('show/userhistoryshow',{data: response});
     } catch (err) {
         console.error(err.message);
     }
@@ -150,8 +154,8 @@ getUserHistory = async(req,res)=>{
 addUserHistory = async(req,res) => {
     const {played, lvl} = req.body;
     try {
-        const response = await pool.query('INSERT INTO user_game_history (played, lvl) VALUES ($1,$2) RETURNING *',[played,lvl])
-        res.json(response)
+        const response = await pool.query('INSERT INTO user_game_history (played, lvl) VALUES ($1,$2) RETURNING *',[parseInt(played),parseInt(lvl)])
+        res.render('success');
     } catch (err) {
         console.error(err.message);
     }
@@ -162,7 +166,7 @@ updateUserHistory = async(req,res) => {
     cons
     try {
         const response = await pool.query('UPDATE user_game_history SET player=$1, lvl=$2 WHERE id=$1',[played,lvl,id])
-        res.json(response);
+        res.render('success');
     } catch (err) {
         console.error(err.message);
     }
@@ -171,7 +175,7 @@ deleteUserHistory = async(req,res) => {
     const id = req.params.id;
     try {
         const response = await pool.query('DELETE FROM players WHERE id = $1',[id])
-        res.json(response);
+        res.render('success');
     } catch (err) {
         console.error(err.message);
     }
@@ -196,5 +200,6 @@ module.exports = {
     updateUserHistory,
     deleteUserHistory,
     viewLoginUser,
-    loginUser
+    loginUser,
+    home
   }
