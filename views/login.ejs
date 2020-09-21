@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <%- include('head.ejs') %>
+    <link rel="stylesheet" href="/style.css">
+    <title>LOGIN</title>
+
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-6 col-md-6 col-sm-12">
+                <div class="my-5"></div>
+                <img class="my-5"src="/binar-logo.png" alt="">
+            </div>
+            
+               
+        <div class="col-md-6 col-sm-12" style="margin-top: 20vh;">
+                <h1 class="color-white">LOGIN</h1>
+                <form action="/" method="POST">
+                        <div class="form-group">
+                          <label class="color-white" for="inpt">username</label>
+                          <input type="text" class="form-control" name="username" id="inpt">
+                        </div>
+                        <div class="form-group">
+                          <label class="color-white"for="pass">Password</label>
+                          <input type="password" class="form-control" name="password"id="pass">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                      </form>
+        </div>
+    </div>
+    </div>
+   
+    </div>
+</body>
+</html>

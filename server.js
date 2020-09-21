@@ -12,7 +12,8 @@ app.set('view engine', 'ejs')
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json());
 
-
+app.get('/',db.viewLoginUser)
+app.post('/',db.loginUser)
 
 
 //user game routing

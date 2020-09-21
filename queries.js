@@ -18,12 +18,22 @@ viewUserGameBiodata =(req,res)=>{
 viewUserGameHistory =(req,res)=>{
     res.render('create/userhistory')
 }
-
+viewLoginUser = (req,res)=>{
+    res.render('login')
+}
+loginUser = (req,res)=>{
+    if(req.body.username === 'admin' && req.body.password === 'admin'){
+        res.render('home')
+    }else {
+        alert('password salah')
+        res.status(401).send({'message':'unauthorize'})
+    }
+}
 //user_game
 getAllGames = async(req,res) =>{
 try {
-    const response = await pool.query('SELECT * FROM user_game RETURNING *');
-    res.json(response)
+    const response = await pool.query('SELECT * FROM user_game');
+    res.render('show/usergame',{data: response});
     } catch (err) {
         console.error(err.message);
     }
@@ -184,5 +194,7 @@ module.exports = {
     getUserHistory,
     addUserHistory,
     updateUserHistory,
-    deleteUserHistory
+    deleteUserHistory,
+    viewLoginUser,
+    loginUser
   }

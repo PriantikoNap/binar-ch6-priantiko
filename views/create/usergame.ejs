@@ -1,17 +1,33 @@
 <html lang="en">
 <head>
+        <%- include('../head.ejs') %>
+        <link rel="stylesheet" href="../style.css">
 </head>
 <body>
-    <form method="POST" action="/addusergames" >
-        <label for="username">Username</label>
-        <br>
-        <input type="text" name="username"/>
-        <br>
-        <label for="pass">Password</label>
-        <br>
-        <input type="text" name="pass"/>
-        <br>
-        <button type="submit">Create Account</button>
-    </form>
+    <div class="container">
+        <div class="row">
+        <div class="col-md-6 col-sm 12">
+                <div class="col-md-6 col-sm-12">
+                        <img class="my-5"src="/binar-logo.png" alt="">
+                    </div>
+
+        </div>
+        <div class="col-md-6 col-sm-12" style="margin-top: 20vh;">
+                <form method="POST" action="/addusergames" >
+                    <div class="form-group">
+                            <label class="color-white" for="inpt">username</label>
+                            <input type="text" class="form-control" name="username" id="inpt">
+                          </div>
+    
+                          <div class="form-group">
+                                <label class="color-white" for="pass">username</label>
+                                <input type="password" class="form-control" name="pass" id="pass">
+                              </div>
+                    <button type="submit">Create Account</button>
+                </form>
+        </div>
+    </div>
+    </div>
+    
 </body>
 </html>
